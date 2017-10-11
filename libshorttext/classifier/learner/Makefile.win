@@ -15,5 +15,5 @@ $(TARGET).obj: $(TARGET).c
 	$(CXX) $(CFLAGS) -c $(TARGET).c
 
 clean:
-	-erase /Q $(TARGET).obj $(TARGET).dll *pyc test *.lib *.exp __pycache__
+	-erase /Q *.obj *.dll *pyc test *.lib *.exp
 	cd liblinear && $(MAKE) -f Makefile.win clean && cd ..

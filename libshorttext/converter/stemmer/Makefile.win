@@ -11,4 +11,4 @@ $(TARGET).obj: $(TARGET).c
 	$(CXX) $(CFLAGS) -c $(TARGET).c
 
 clean:
-	-erase /Q $(TARGET).o $(TARGET).dll *pyc test *.lib *.exp
+	-erase /Q $(TARGET).obj $(TARGET).dll *pyc  *.lib *.exp
