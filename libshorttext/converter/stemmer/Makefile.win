@@ -1,0 +1,14 @@
+CXX = cl.exe
+CFLAGS = /nologo /O2 /EHsc /I. /D _WIN64 /D _CRT_SECURE_NO_DEPRECATE
+TARGET = porter
+
+all: lib
+
+lib: $(TARGET).obj
+	$(CXX) $(CFLAGS) -LD $(TARGET).c  -Feporter -link -DEF:$(TARGET).def
+
+$(TARGET).obj: $(TARGET).c
+	$(CXX) $(CFLAGS) -c $(TARGET).c
+
+clean:
+	-erase /Q $(TARGET).o $(TARGET).dll *pyc test *.lib *.exp

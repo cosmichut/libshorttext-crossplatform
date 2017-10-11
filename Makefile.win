@@ -1,0 +1,15 @@
+
+all: code
+
+code: stemmer learner
+
+stemmer:
+	cd libshorttext/converter/stemmer  && $(MAKE) -f Makefile.win clean all && cd ../../..
+
+learner:
+	cd libshorttext/classifier/learner  && $(MAKE) -f Makefile.win clean all && cd ../../..
+
+clean:
+	-erase /Q *.svm *.converter *.model *.config *.out *.pyc
+	cd libshorttext/converter/stemmer  && $(MAKE) -f Makefile.win clean && cd ../../..
+	cd libshorttext/classifier/learner  && $(MAKE) -f Makefile.win clean && cd ../../..

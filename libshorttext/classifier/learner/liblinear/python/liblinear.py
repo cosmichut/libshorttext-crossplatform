@@ -2,11 +2,12 @@
 
 from ctypes import *
 from ctypes.util import find_library
-from os import path
+import os
 import sys
 
 # For unix the prefix 'lib' is not considered.
-liblinear = CDLL(path.join(path.dirname(path.abspath(__file__)), '../liblinear.so.1'))
+libpostfix = '.dll' if os.name == 'nt' else '.so.1' #support both windows and linux
+liblinear = CDLL(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../liblinear'+libpostfix))
 
 # Construct constants
 SOLVER_TYPE = ['L2R_LR', 'L2R_L2LOSS_SVC_DUAL', 'L2R_L2LOSS_SVC', 'L2R_L1LOSS_SVC_DUAL',\

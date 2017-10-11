@@ -26,8 +26,9 @@ from ctypes import *
 def _merge_files(svm_files, offsets, is_training, output):	
 	if not isinstance(offsets, list) or len(svm_files) != len(offsets):
 		raise ValueError('offsets should be a list where the length is the number of merged files')
-	
-	util = CDLL(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'classifier', 'learner', 'util.so.1'))
+
+	libpostfix = '.dll' if os.name == 'nt' else '.so.1'
+	util = CDLL(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'classifier', 'learner', 'util'+libpostfix))
 	util.merge_problems.restype = None
 	util.merge_problems.argtypes = [POINTER(c_char_p), c_int, POINTER(c_int64), c_char_p, c_char, POINTER(c_int64)]
 
@@ -155,7 +156,7 @@ class TextPreprocessor(object):
 			if option[i] == '-stopword': 
 				if int(option[i+1]) != 0: 
 					stoplist = self.default_stoplist()
-			elif option[i] == '-stemming': 
+			elif option[i] == '-stemming':
 				if int(option[i+1]) != 0:
 					tokstemmer = porter.stem
 			i+=2

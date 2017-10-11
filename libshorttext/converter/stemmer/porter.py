@@ -5,7 +5,8 @@ from ctypes.util import find_library
 import sys
 import os
 
-stemmer = CDLL(os.path.join(os.path.dirname(__file__),'./porter.so.1'))
+libpostfix = '.dll' if os.name == 'nt' else '.so.1' #support both windows and linux
+stemmer = CDLL(os.path.join(os.path.dirname(__file__),'./porter'+libpostfix))
 
 def fillprototype(f, restype, argtypes): 
 	f.restype = restype

@@ -1,3 +1,51 @@
+Preface for revise
+==================
+LibShortText is an open source library for short-text classification
+(http://www.csie.ntu.edu.tw/~cjlin/libshorttext). Please read the COPYRIGHT file
+before using LibShortText.
+LibShortText is built based on project liblinear(see http://www.csie.ntu.edu.tw/~cjlin/liblinear/)
+which support win and linux platform both.
+
+But LibShortText does not support Windows, So, this project do it :
+-- support build and run on windows platform
+
+
+Building Windows Binaries
+=========================
+
+Windows binaries are available in the directory `windows'. To re-build
+them via Visual C++, use the following steps:
+
+1. Open "X64 Native Tools Command Prompt for VS2017" comand line tools.
+
+   also you can open a dos command window and set environment variables of VC++ like this, type
+
+   ""C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64\vcvars64.bat""
+
+   You may have to modify the above command according which version of VC++/VS or where it is installed.
+
+2. change to current project directory, and Type
+
+    nmake -f Makefile.win clean all
+
+3. (Optional) To build 32-bit windows binaries, you must
+	(1) Setup "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat" instead of vcvars64.bat
+	(2) Change CFLAGS in every Makefile.win: /D _WIN64 to /D _WIN32
+
+    nmake -f Makefile.win clean all
+
+4.  go to the ../demo ,and copy the command in demo.sh, and paste to command line to run:
+
+    python ../text-train.py -f -A train_feats1 -A train_feats2 train_file
+    python ../text-predict.py -f -A test_feats1 -A test_feats2 test_file train_file.model predict_result
+    python demo.py
+
+
+Enjoy!
+
+Author: Justin(github: https://github.com/cosmichut)   @2017/10/11
+
+=================following is original README=========================
 LibShortText is an open source library for short-text classification
 (http://www.csie.ntu.edu.tw/~cjlin/libshorttext). Please read the COPYRIGHT file
 before using LibShortText.
